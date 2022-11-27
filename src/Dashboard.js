@@ -23,6 +23,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import CreateIcon from "@mui/icons-material/Create";
+import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 /*
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -103,7 +104,25 @@ const Drawer = styled(MuiDrawer, {
   },
 }));
 
-const mdTheme = createTheme();
+//const mdTheme = createTheme();
+const mdTheme = extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          main: pink[600],
+        },
+      },
+    },
+    dark: {
+      palette: {
+        primary: {
+          main: pink[400],
+        },
+      },
+    },
+  },
+});
 
 export default function Dashboard() {
   //const [habits, setHabits] = React.useState([]);
@@ -268,15 +287,15 @@ export default function Dashboard() {
                 flexWrap: "wrap",
               }}
             >
-              <CheckBoxIcon />
+              <LibraryMusicIcon />
               <Typography
                 component="h1"
                 variant="h6"
                 color="inherit"
                 noWrap
-                sx={{ flexGrow: 1 }}
+                sx={{ flexGrow: 1, marginLeft: "10px" }}
               >
-                Habit Tracker
+                Rate My Music
               </Typography>
             </div>
           </Toolbar>
