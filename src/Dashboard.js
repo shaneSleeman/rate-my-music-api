@@ -17,13 +17,14 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import AddIcon from "@mui/icons-material/Add";
 import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import CreateIcon from "@mui/icons-material/Create";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -325,9 +326,9 @@ export default function Dashboard() {
                 trigger={
                   <ListItemButton>
                     <ListItemIcon>
-                      <AddIcon />
+                      <QueueMusicIcon sx={{ color: "#1DB954" }} />
                     </ListItemIcon>
-                    <ListItemText primary="Add Habit" />
+                    <ListItemText primary="Library" />
                   </ListItemButton>
                 }
                 position="right top"
@@ -336,9 +337,9 @@ export default function Dashboard() {
                 trigger={
                   <ListItemButton>
                     <ListItemIcon>
-                      <CheckBoxIcon />
+                      <PlaylistAddIcon sx={{ color: "#1DB954" }} />
                     </ListItemIcon>
-                    <ListItemText primary="Daily Report" />
+                    <ListItemText primary="Backlog" />
                   </ListItemButton>
                 }
                 position="right top"
@@ -348,7 +349,7 @@ export default function Dashboard() {
             <React.Fragment>
               <ListItemButton>
                 <ListItemIcon>
-                  <AccountBoxIcon />
+                  <AccountBoxIcon sx={{ color: "#1DB954" }} />
                 </ListItemIcon>
                 <ListItemText primary={excludeAt(userName)} />
               </ListItemButton>
@@ -356,7 +357,7 @@ export default function Dashboard() {
                 trigger={
                   <ListItemButton>
                     <ListItemIcon>
-                      <PersonAddIcon />
+                      <PersonAddIcon sx={{ color: "#1DB954" }} />
                     </ListItemIcon>
                     <ListItemText primary="Sign In" />
                   </ListItemButton>
@@ -392,7 +393,7 @@ export default function Dashboard() {
                 trigger={
                   <ListItemButton>
                     <ListItemIcon>
-                      <CreateIcon />
+                      <CreateIcon sx={{ color: "#1DB954" }} />
                     </ListItemIcon>
                     <ListItemText primary="Sign Up" />
                   </ListItemButton>
@@ -434,7 +435,7 @@ export default function Dashboard() {
 
               <ListItemButton onClick={handleLogout}>
                 <ListItemIcon>
-                  <LogoutIcon />
+                  <LogoutIcon sx={{ color: "#1DB954" }} />
                 </ListItemIcon>
                 <ListItemText primary="Log Out" />
               </ListItemButton>
