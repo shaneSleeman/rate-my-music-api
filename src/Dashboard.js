@@ -26,6 +26,8 @@ import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase";
@@ -36,6 +38,9 @@ import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "./firebase";*/
 
 import Popup from "reactjs-popup";
+
+import Library from "./Library";
+import Backlog from "./Backlog";
 
 import Copyright from "./Copyright";
 
@@ -322,28 +327,20 @@ export default function Dashboard() {
           <Divider />
           <List component="nav">
             <React.Fragment>
-              <Popup
-                trigger={
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <QueueMusicIcon sx={{ color: "#1DB954" }} />
-                    </ListItemIcon>
-                    <ListItemText primary="Library" />
-                  </ListItemButton>
-                }
-                position="right top"
-              ></Popup>
-              <Popup
-                trigger={
-                  <ListItemButton>
-                    <ListItemIcon>
-                      <PlaylistAddIcon sx={{ color: "#1DB954" }} />
-                    </ListItemIcon>
-                    <ListItemText primary="Backlog" />
-                  </ListItemButton>
-                }
-                position="right top"
-              ></Popup>
+              <ListItemButton href="/">
+                <ListItemIcon>
+                  <QueueMusicIcon sx={{ color: "#1DB954" }} />
+                </ListItemIcon>
+                <ListItemText primary="Library" />
+              </ListItemButton>
+            </React.Fragment>
+            <React.Fragment>
+              <ListItemButton href="/backlog">
+                <ListItemIcon>
+                  <PlaylistAddIcon sx={{ color: "#1DB954" }} />
+                </ListItemIcon>
+                <ListItemText primary="Backlog" />
+              </ListItemButton>
             </React.Fragment>
             <Divider sx={{ my: 1 }} />
             <React.Fragment>
@@ -455,17 +452,12 @@ export default function Dashboard() {
           }}
         >
           <Toolbar />
-          <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <Grid container spacing={3}>
-              {}
-              <Grid item xs={12}>
-                <Paper
-                  sx={{ p: 2, display: "flex", flexDirection: "column" }}
-                ></Paper>
-              </Grid>
-            </Grid>
-            <Copyright sx={{ pt: 4 }} />
-          </Container>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Library />} />
+              <Route path="/backlog" element={<Backlog />} />
+            </Routes>
+          </BrowserRouter>
         </Box>
       </Box>
     </ThemeProvider>
