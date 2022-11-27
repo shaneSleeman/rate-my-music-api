@@ -2,3 +2,4 @@
     - rate songs/albums/artists using Spotify API, and keep backlog of albums to listen to
     - show more info on music; artist, cover, and description of artist
 - title, favicon
+- all icons colours, ensure theme is correct

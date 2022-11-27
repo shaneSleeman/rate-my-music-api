@@ -24,12 +24,13 @@ import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import CreateIcon from "@mui/icons-material/Create";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic";
-/*
+
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
+/*
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "./firebase";*/
 
@@ -138,11 +139,10 @@ export default function Dashboard() {
   };
 
   const [userName, setUserName] = React.useState("Guest@");
-  /*
+
   const [signupError, setSignupError] = React.useState("");
-  const [selectedDifficulty, setSelectedDifficulty] = React.useState("Easy");
   const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");*/
+  const [password, setPassword] = React.useState("");
 
   // Update any change with the database, once newHabits is fed
   /*
@@ -172,23 +172,23 @@ export default function Dashboard() {
       });
     });
   };*/
-  /*
+
   React.useEffect(() => {
     // Set data with signed in user
-    
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserName(user.email);
-        fetchUser(user.email);
+        //fetchUser(user.email);
       } else {
         setUserName("Guest@");
-        fetchUser("Guest@");
+        //fetchUser("Guest@");
       }
     });
 
     // If loaded with small screen width, have smaller sidebar
     if (window.innerWidth < 760) setOpen(false);
-  }, []);*/
+  }, []);
 
   // Update name of habit whenever field changes
   /*
@@ -196,7 +196,6 @@ export default function Dashboard() {
     setHabit(event.target.value);
   }*/
 
-  /*
   // Signup function
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -209,10 +208,9 @@ export default function Dashboard() {
       .catch((error) => {
         setSignupError("Invalid email, weak password, or user exists.");
       });
-  };*/
+  };
 
   // Signin function
-  /*
   const onLogin = (e) => {
     e.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
@@ -220,17 +218,16 @@ export default function Dashboard() {
         userName = email;
       })
       .catch((error) => {});
-  };*/
+  };
 
   // Logout function
-  /*
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
         setUserName("Guest@");
       })
       .catch((error) => {});
-  };*/
+  };
 
   /*
   // Add habit to state
@@ -328,32 +325,13 @@ export default function Dashboard() {
                 trigger={
                   <ListItemButton>
                     <ListItemIcon>
-                      <AddIcon sx={{ color: "#1DB954" }} />
+                      <AddIcon />
                     </ListItemIcon>
                     <ListItemText primary="Add Habit" />
                   </ListItemButton>
                 }
                 position="right top"
-              >
-                <Card sx={{ minWidth: 275 }}>
-                  <CardContent>
-                    <TextField
-                      id="standard-basic"
-                      label="Habit"
-                      variant="standard"
-                      onChange={() => {}}
-                    />
-                    <Typography variant="body2" sx={{ marginTop: "10px" }}>
-                      Difficulty
-                    </Typography>
-                  </CardContent>
-                  <CardActions>
-                    <Button size="small" onClick={() => {}}>
-                      Add
-                    </Button>
-                  </CardActions>
-                </Card>
-              </Popup>
+              ></Popup>
               <Popup
                 trigger={
                   <ListItemButton>
@@ -364,116 +342,7 @@ export default function Dashboard() {
                   </ListItemButton>
                 }
                 position="right top"
-              >
-                {/*
-                <Card sx={{ minWidth: 275 }}>
-                  <CardContent>
-                    <Typography variant="p" component="h3">
-                      How well did you perform today?
-                    </Typography>
-                    <Typography variant="body2" component="h4">
-                      Missed habits will be incurred a 2 day penalty.
-                    </Typography>
-                    <FormGroup>
-                      {habits.map((habit, i) => (
-                        <FormControlLabel
-                          control={
-                            <>
-                              <Button
-                                onClick={() => {
-                                  const newHabits = habits.map((habit, i2) => {
-                                    let difficultyDays;
-                                    if (habit.difficulty == "Easy")
-                                      difficultyDays = 18;
-                                    else if (habit.difficulty == "Medium")
-                                      difficultyDays = 66;
-                                    else difficultyDays = 254;
-
-                                    let date = new Date();
-                                    let day = date.getDate();
-                                    let month = date.getMonth();
-                                    let year = date.getFullYear();
-                                    let dateString =
-                                      day + "/" + (month + 1) + "/" + year;
-                                    if (habit.daysRemain > 1) dateString = "-";
-                                    if (i == i2 && habit.daysRemain > 0) {
-                                      return Habit(
-                                        habit.id,
-                                        habit.dateAdded,
-                                        habit.name,
-                                        habit.difficulty,
-                                        parseInt(habit.daysComplete) + 1,
-                                        dateString
-                                      );
-                                    } else
-                                      return Habit(
-                                        habit.id,
-                                        habit.dateAdded,
-                                        habit.name,
-                                        habit.difficulty,
-                                        parseInt(habit.daysComplete),
-                                        dateString
-                                      );
-                                  });
-                                  setHabits(newHabits);
-                                  updateDatabase(newHabits);
-                                }}
-                                sx={{ marginTop: "5px", marginRight: "5px" }}
-                                variant="outlined"
-                                color="success"
-                              >
-                                Completed
-                              </Button>
-                              <Button
-                                sx={{ marginTop: "5px", marginRight: "5px" }}
-                                variant="outlined"
-                                color="error"
-                                onClick={() => {
-                                  const newHabits = habits.map((habit, i2) => {
-                                    let difficultyDays;
-                                    if (habit.difficulty == "Easy")
-                                      difficultyDays = 18;
-                                    else if (habit.difficulty == "Medium")
-                                      difficultyDays = 66;
-                                    else difficultyDays = 254;
-
-                                    if (i == i2 && habit.daysComplete > 0) {
-                                      return Habit(
-                                        habit.id,
-                                        habit.dateAdded,
-                                        habit.name,
-                                        habit.difficulty,
-                                        parseInt(habit.daysComplete) - 2 < 0
-                                          ? 0
-                                          : parseInt(habit.daysComplete) - 2,
-                                        "-"
-                                      );
-                                    } else
-                                      return Habit(
-                                        habit.id,
-                                        habit.dateAdded,
-                                        habit.name,
-                                        habit.difficulty,
-                                        parseInt(habit.daysComplete),
-                                        "-"
-                                      );
-                                  });
-                                  setHabits(newHabits);
-                                  updateDatabase(newHabits);
-                                }}
-                              >
-                                Missed
-                              </Button>
-                            </>
-                          }
-                          label={habit.name}
-                        />
-                      ))}
-                    </FormGroup>
-                  </CardContent>
-                </Card>
-                */}
-              </Popup>
+              ></Popup>
             </React.Fragment>
             <Divider sx={{ my: 1 }} />
             <React.Fragment>
@@ -500,7 +369,7 @@ export default function Dashboard() {
                       id="standard-basic"
                       label="Email"
                       variant="standard"
-                      onChange={(e) => {}}
+                      onChange={(e) => setEmail(e.target.value)}
                     />
                   </CardContent>
                   <CardContent sx={{ marginTop: "-20px" }}>
@@ -509,11 +378,11 @@ export default function Dashboard() {
                       label="Password"
                       variant="standard"
                       type="password"
-                      onChange={(e) => {}}
+                      onChange={(e) => setPassword(e.target.value)}
                     />
                   </CardContent>
                   <CardActions>
-                    <Button size="small" onClick={() => {}}>
+                    <Button size="small" onClick={onLogin}>
                       Sign In
                     </Button>
                   </CardActions>
@@ -530,7 +399,6 @@ export default function Dashboard() {
                 }
                 position="right top"
               >
-                {/*
                 <Card sx={{ minWidth: 275 }}>
                   <CardContent>
                     <TextField
@@ -561,10 +429,10 @@ export default function Dashboard() {
                       Sign Up
                     </Button>
                   </CardActions>
-            </Card>*/}
+                </Card>
               </Popup>
 
-              <ListItemButton onClick={() => {}}>
+              <ListItemButton onClick={handleLogout}>
                 <ListItemIcon>
                   <LogoutIcon />
                 </ListItemIcon>
