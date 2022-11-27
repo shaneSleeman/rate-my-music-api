@@ -49,20 +49,26 @@ import {
 
 const mdTheme = createTheme({
   palette: {
+    mode: "dark",
     type: "dark",
     primary: {
-      main: "#11cb5f",
-      dark: "#11cb5f",
+      main: "#1DB954",
+      dark: "#1DB954",
     },
-    /*
+    text: {
+      primary: "#ffffff",
+      secondary: "#ffffff",
+      disabled: "#ffffff",
+      hint: "#ffffff",
+    },
     secondary: {
-      main: "#f50057",
-    },*/
-    /*
+      main: "#1DB954",
+    },
+
     background: {
-      default: "#11cb5f",
-      paper: "#11cb5f",
-    },*/
+      default: "#191414",
+      paper: "#191414",
+    },
   },
 });
 //import DifficultySelect from "./DifficultySelect";
@@ -265,6 +271,8 @@ export default function Dashboard() {
           <Toolbar
             sx={{
               pr: "24px", // keep right padding when drawer closed
+              backgroundColor: "#1DB954",
+              color: "#191414",
             }}
           >
             <IconButton
@@ -320,7 +328,7 @@ export default function Dashboard() {
                 trigger={
                   <ListItemButton>
                     <ListItemIcon>
-                      <AddIcon />
+                      <AddIcon sx={{ color: "#1DB954" }} />
                     </ListItemIcon>
                     <ListItemText primary="Add Habit" />
                   </ListItemButton>
