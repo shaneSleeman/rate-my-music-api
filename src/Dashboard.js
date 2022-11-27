@@ -35,6 +35,8 @@ import { db } from "./firebase";*/
 
 import Popup from "reactjs-popup";
 
+import Copyright from "./Copyright";
+
 import {
   Button,
   Card,
@@ -45,7 +47,24 @@ import {
   TextField,
 } from "@mui/material";
 
-import Copyright from "./Copyright";
+const mdTheme = createTheme({
+  palette: {
+    type: "dark",
+    primary: {
+      main: "#11cb5f",
+      dark: "#11cb5f",
+    },
+    /*
+    secondary: {
+      main: "#f50057",
+    },*/
+    /*
+    background: {
+      default: "#11cb5f",
+      paper: "#11cb5f",
+    },*/
+  },
+});
 //import DifficultySelect from "./DifficultySelect";
 
 // Shortens username display
@@ -103,26 +122,6 @@ const Drawer = styled(MuiDrawer, {
     }),
   },
 }));
-
-//const mdTheme = createTheme();
-const mdTheme = extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {
-          main: pink[600],
-        },
-      },
-    },
-    dark: {
-      palette: {
-        primary: {
-          main: pink[400],
-        },
-      },
-    },
-  },
-});
 
 export default function Dashboard() {
   //const [habits, setHabits] = React.useState([]);
