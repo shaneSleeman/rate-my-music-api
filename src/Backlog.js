@@ -8,7 +8,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
 import DirectionsIcon from "@mui/icons-material/Directions";
 
-const Backlog = () => {
+const Backlog = ({ updateLibrary }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
@@ -70,7 +70,7 @@ const Backlog = () => {
           </Paper>
         </Grid>
         {suggestions.map((suggestion, i) => (
-          <Paper>
+          <Paper onClick={updateLibrary(suggestion)}>
             <Typography>{suggestion.name}</Typography>
           </Paper>
         ))}

@@ -33,6 +33,9 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { signOut } from "firebase/auth";
+
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db } from "./firebase";
 /*
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "./firebase";*/
@@ -143,12 +146,30 @@ export default function Dashboard() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
+  const [library, setLibrary] = React.useState([]);
 
   const [userName, setUserName] = React.useState("Guest@");
 
   const [signupError, setSignupError] = React.useState("");
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  // Update library with database
+  const updateDatabase = async (newLibrary) => {
+    try {
+      let thisDate = new Date().getTime();
+      const docRef = await addDoc(collection(db, `${userName}`), {
+        library: newLibrary,
+        date: thisDate,
+      });
+    } catch (e) {}
+  };
+
+  // Add to local and backend library
+  function updateLibrary(song) {
+    setLibrary((library) => [...library, song]);
+    updateDatabase([...library, song]);
+  }
 
   // Update any change with the database, once newHabits is fed
   /*
@@ -181,14 +202,28 @@ export default function Dashboard() {
 
   React.useEffect(() => {
     // Set data with signed in user
+    const fetchUser = async (newUser) => {
+      let latestDate = 0;
+      let latestData;
+
+      await getDocs(collection(db, `${newUser}`)).then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          if (doc.data().date > latestDate) {
+            latestDate = doc.data().date;
+            latestData = doc.data().library;
+            setLibrary(latestData);
+          }
+        });
+      });
+    };
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUserName(user.email);
-        //fetchUser(user.email);
+        fetchUser(user.email);
       } else {
         setUserName("Guest@");
-        //fetchUser("Guest@");
+        fetchUser("Guest@");
       }
     });
 
@@ -454,8 +489,11 @@ export default function Dashboard() {
           <Toolbar />
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Library />} />
-              <Route path="/backlog" element={<Backlog />} />
+              <Route path="/" element={<Library library={library} />} />
+              <Route
+                path="/backlog"
+                element={<Backlog updateLibrary={updateLibrary} />}
+              />
             </Routes>
           </BrowserRouter>
         </Box>
