@@ -357,7 +357,7 @@ export default function Dashboard() {
                 <ListItemIcon>
                   <PlaylistAddIcon sx={{ color: "#1DB954" }} />
                 </ListItemIcon>
-                <ListItemText primary="Backlog" />
+                <ListItemText primary="Search Track" />
               </ListItemButton>
             </React.Fragment>
             <Divider sx={{ my: 1 }} />
