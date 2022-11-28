@@ -65,6 +65,7 @@ const Library = ({ library, deleteFunction, ratings, setRateFunction }) => {
                     value={ratings[i]}
                     onChange={(event, newValue) => {
                       setRateFunction(i, newValue);
+                      //window.location.reload(false);
                     }}
                   />
                 </Box>

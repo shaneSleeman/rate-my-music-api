@@ -174,14 +174,6 @@ export default function Dashboard() {
     updateDatabase([...library, song], [...ratings, 0]);
   }
 
-  function setRating(i, rating) {
-    let copy = ratings;
-    copy[i] = rating;
-    console.log(copy);
-    setRatings(copy);
-    updateDatabase(library, copy);
-  }
-
   React.useEffect(() => {
     // Set data with signed in user
     const fetchUser = async (newUser) => {
@@ -260,6 +252,26 @@ export default function Dashboard() {
     );
   };
 
+  function setRating(i, rating) {
+    //let copy = ratings;
+    //copy[i] = rating;
+    //console.log(copy);
+    setRatings(
+      ratings.map((ratingAt, j) => {
+        if (i == j) return rating;
+        else return ratingAt;
+      })
+    );
+    updateDatabase(
+      library,
+      ratings.map((ratingAt, j) => {
+        if (i == j) return rating;
+        else return ratingAt;
+      })
+    );
+    //window.location.reload(false);
+  }
+
   return (
     <ThemeProvider theme={mdTheme}>
       <Box sx={{ display: "flex" }}>
@@ -330,7 +342,7 @@ export default function Dashboard() {
               </ListItemButton>
             </React.Fragment>
             <React.Fragment>
-              <ListItemButton href="/backlog">
+              <ListItemButton href="/search">
                 <ListItemIcon>
                   <PlaylistAddIcon sx={{ color: "#1DB954" }} />
                 </ListItemIcon>
