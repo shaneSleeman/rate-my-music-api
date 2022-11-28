@@ -257,6 +257,7 @@ export default function Dashboard() {
     signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         userName = email;
+        window.location.reload(false);
       })
       .catch((error) => {});
   };

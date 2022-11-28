@@ -9,6 +9,7 @@
 - my own guest music lol
 - securely store music API
 - delete song function
+- need to fix new account empty bug on both this AND habit tracker!!
 
 It appears you haven't rated music yet! Add music to the backlog. Once rated, it'll appear here.
 
