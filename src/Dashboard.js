@@ -174,47 +174,29 @@ export default function Dashboard() {
     updateDatabase([...library, song], [...ratings, 0]);
   }
 
-  // Update any change with the database, once newHabits is fed
-  /*
-  const updateDatabase = async (newHabits) => {
-    try {
-      let thisDate = new Date().getTime();
-      const docRef = await addDoc(collection(db, `${userName}`), {
-        habits: newHabits,
-        date: thisDate,
-      });
-    } catch (e) {}
-  };*/
-
-  // Fetch data for user, once newUser is fed
-  /*
-  const fetchUser = async (newUser) => {
-    let latestDate = 0;
-    let latestData;
-
-    await getDocs(collection(db, `${newUser}`)).then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        if (doc.data().date > latestDate) {
-          latestDate = doc.data().date;
-          latestData = doc.data().habits;
-          setHabits(latestData);
-        }
-      });
-    });
-  };*/
+  function setRating(i, rating) {
+    let copy = ratings;
+    copy[i] = rating;
+    console.log(copy);
+    setRatings(copy);
+    updateDatabase(library, copy);
+  }
 
   React.useEffect(() => {
     // Set data with signed in user
     const fetchUser = async (newUser) => {
       let latestDate = 0;
       let latestData;
+      let latestRatings;
 
       await getDocs(collection(db, `${newUser}`)).then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           if (doc.data().date > latestDate) {
             latestDate = doc.data().date;
             latestData = doc.data().library;
+            latestRatings = doc.data().ratings;
             setLibrary(latestData);
+            setRatings(latestRatings);
           }
         });
       });
@@ -233,12 +215,6 @@ export default function Dashboard() {
     // If loaded with small screen width, have smaller sidebar
     if (window.innerWidth < 760) setOpen(false);
   }, []);
-
-  // Update name of habit whenever field changes
-  /*
-  function changeHabit(event) {
-    setHabit(event.target.value);
-  }*/
 
   // Signup function
   const onSubmit = async (e) => {
@@ -283,36 +259,6 @@ export default function Dashboard() {
       ratings.filter((rating, n) => n !== i)
     );
   };
-
-  /*
-  // Add habit to state
-  function addHabit(newHabit) {
-    let date = new Date();
-    let day = date.getDate();
-    let month = date.getMonth();
-    let year = date.getFullYear();
-    let dateString = day + "/" + (month + 1) + "/" + year;
-    let newHabitObject = Habit(
-      0,
-      dateString,
-      newHabit,
-      selectedDifficulty,
-      0,
-      "-"
-    );
-    if (newHabit != "" && selectedDifficulty != "") {
-      setHabits((habits) => [...habits, newHabitObject]);
-      updateDatabase([...habits, newHabitObject]);
-    }
-    setHabit("");
-  }*/
-
-  // Remove habit from state
-  /*
-  const deleteHabit = (i) => {
-    setHabits((habits) => habits.filter((habit, n) => n !== i));
-    updateDatabase(habits.filter((habit, n) => n !== i));
-  };*/
 
   return (
     <ThemeProvider theme={mdTheme}>
@@ -510,6 +456,7 @@ export default function Dashboard() {
                     library={library}
                     ratings={ratings}
                     deleteFunction={deleteSong}
+                    setRateFunction={setRating}
                   />
                 }
               />

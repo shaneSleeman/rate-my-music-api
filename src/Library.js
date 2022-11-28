@@ -19,6 +19,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { SecurityUpdateWarning } from "@mui/icons-material";
 
 const Library = ({ library, deleteFunction, ratings, setRateFunction }) => {
   return (
@@ -61,9 +62,9 @@ const Library = ({ library, deleteFunction, ratings, setRateFunction }) => {
                   </IconButton>
                   <Rating
                     name="simple-controlled"
-                    value={0}
+                    value={ratings[i]}
                     onChange={(event, newValue) => {
-                      //setValue(newValue);
+                      setRateFunction(i, newValue);
                     }}
                   />
                 </Box>
