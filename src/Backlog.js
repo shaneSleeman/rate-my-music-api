@@ -70,8 +70,14 @@ const Backlog = ({ updateLibrary }) => {
           </Paper>
         </Grid>
         {suggestions.map((suggestion, i) => (
-          <Paper onClick={updateLibrary(suggestion)}>
-            <Typography>{suggestion.name}</Typography>
+          <Paper>
+            <Typography
+              onClick={() => {
+                updateLibrary(suggestion);
+              }}
+            >
+              {suggestion.name}
+            </Typography>
           </Paper>
         ))}
       </Grid>
