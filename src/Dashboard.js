@@ -192,6 +192,22 @@ export default function Dashboard() {
       }
     });
 
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "e0669a5601msh0fa777c28b105efp1c77b3jsnc15800160ba6",
+        "X-RapidAPI-Host": "youtube-music1.p.rapidapi.com",
+      },
+    };
+
+    fetch(
+      "https://youtube-music1.p.rapidapi.com/v2/search?query=eminem",
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
+
     // If loaded with small screen width, have smaller sidebar
     if (window.innerWidth < 760) setOpen(false);
   }, []);

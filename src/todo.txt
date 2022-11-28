@@ -3,3 +3,26 @@
     - show more info on music; artist, cover, and description of artist
 - title, favicon
 - all icons colours, ensure theme is correct
+- need to be able to rearrange order, mention in readme
+- how to only have 1 doc per user, a lot of data
+- mobile friendly scroll
+- my own guest music lol
+
+It appears you haven't rated music yet! Add music to the backlog. Once rated, it'll appear here.
+
+"Note that the free tier of the Spotify API being used, only allows for 1000 queries per month; so use sparingly"
+
+"The app uses YouTube Music's free API, as their free tier has a sufficiently large limit, 
+and their free tier is capped at 1 query/second which avoids too many queries being sent per keystroke while
+searching for tracks".
+
+flow:
+- library has rated songs
+    - ratings can be updated here
+- backlog is purely for adding songs
+    - once song is rated in backlog, it's removed from backlog
+
+next step:
+- retrieve something from API, what can be retrieved
+- ammend this to display, card design
+- search suggestions, most important, clicking on these is what actually adds
