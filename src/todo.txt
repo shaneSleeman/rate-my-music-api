@@ -6,7 +6,6 @@ remaining tasks
 - empty library message
 - API warning
 - new account empty bug; both this and habit tracker
-- securely store API
 - host
 - placeholder songs
 - what happens if lock database?
