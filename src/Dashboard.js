@@ -147,6 +147,7 @@ export default function Dashboard() {
     setOpen(!open);
   };
   const [library, setLibrary] = React.useState([]);
+  const [ratings, setRatings] = React.useState([]);
 
   const [userName, setUserName] = React.useState("Guest@");
 
@@ -155,11 +156,12 @@ export default function Dashboard() {
   const [password, setPassword] = React.useState("");
 
   // Update library with database
-  const updateDatabase = async (newLibrary) => {
+  const updateDatabase = async (newLibrary, newRatings) => {
     try {
       let thisDate = new Date().getTime();
       const docRef = await addDoc(collection(db, `${userName}`), {
         library: newLibrary,
+        ratings: newRatings,
         date: thisDate,
       });
     } catch (e) {}
@@ -168,7 +170,8 @@ export default function Dashboard() {
   // Add to local and backend library
   function updateLibrary(song) {
     setLibrary((library) => [...library, song]);
-    updateDatabase([...library, song]);
+    setRatings((ratings) => [...ratings, 0]);
+    updateDatabase([...library, song], [...ratings, 0]);
   }
 
   // Update any change with the database, once newHabits is fed
@@ -274,7 +277,11 @@ export default function Dashboard() {
   // Remove song from state
   const deleteSong = (i) => {
     setLibrary((library) => library.filter((library, n) => n !== i));
-    updateDatabase(library.filter((library, n) => n !== i));
+    setRatings((ratings) => ratings.filter((rating, n) => n !== i));
+    updateDatabase(
+      library.filter((library, n) => n !== i),
+      ratings.filter((rating, n) => n !== i)
+    );
   };
 
   /*
@@ -499,11 +506,15 @@ export default function Dashboard() {
               <Route
                 path="/"
                 element={
-                  <Library library={library} deleteFunction={deleteSong} />
+                  <Library
+                    library={library}
+                    ratings={ratings}
+                    deleteFunction={deleteSong}
+                  />
                 }
               />
               <Route
-                path="/backlog"
+                path="/search"
                 element={<Backlog updateLibrary={updateLibrary} />}
               />
             </Routes>

@@ -6,6 +6,7 @@ import {
   Grid,
   IconButton,
   Paper,
+  Rating,
   Typography,
 } from "@mui/material";
 import { Container } from "@mui/system";
@@ -19,7 +20,7 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 
-const Library = ({ library, deleteFunction }) => {
+const Library = ({ library, deleteFunction, ratings, setRateFunction }) => {
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={3}>
@@ -58,6 +59,13 @@ const Library = ({ library, deleteFunction }) => {
                       sx={{ height: 38, width: 38 }}
                     />
                   </IconButton>
+                  <Rating
+                    name="simple-controlled"
+                    value={0}
+                    onChange={(event, newValue) => {
+                      //setValue(newValue);
+                    }}
+                  />
                 </Box>
               </Box>
               <CardMedia
