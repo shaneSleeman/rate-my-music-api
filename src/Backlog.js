@@ -49,6 +49,12 @@ const Backlog = ({ updateLibrary }) => {
       .catch((err) => console.error(err));
   }
 
+  const removeFromSuggestions = (i) => {
+    setSuggestions((suggestions) =>
+      suggestions.filter((suggestion, n) => n !== i)
+    );
+  };
+
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={3}>
@@ -118,6 +124,7 @@ const Backlog = ({ updateLibrary }) => {
                     <AddIcon
                       onClick={() => {
                         updateLibrary(suggestion);
+                        removeFromSuggestions(i);
                       }}
                       sx={{ height: 38, width: 38 }}
                     />

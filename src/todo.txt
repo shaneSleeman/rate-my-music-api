@@ -1,11 +1,10 @@
 remaining tasks
-- correct theming
+- correct theming/bugs
 - rearrange order?...
 - complete library and search pages design
 - public repo and readme from here, not from github
-- empty library message
-- API warning
-- new account empty bug; both this and habit tracker
+- on both this and habit tracker, fix reload and error messages
+- messages: library empty, how to use
 - host
 - placeholder songs
 - what happens if lock database?
