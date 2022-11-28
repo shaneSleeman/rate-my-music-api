@@ -63,6 +63,12 @@ const Backlog = ({ updateLibrary }) => {
             }}
           >
             <InputBase
+              onKeyPress={(event) => {
+                if (event.key === "Enter") {
+                  event.preventDefault();
+                  searchSong(query);
+                }
+              }}
               sx={{ ml: 1, flex: 1 }}
               placeholder="Search Track..."
               inputProps={{ "aria-label": "search google maps" }}
