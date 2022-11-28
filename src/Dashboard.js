@@ -271,6 +271,12 @@ export default function Dashboard() {
       .catch((error) => {});
   };
 
+  // Remove song from state
+  const deleteSong = (i) => {
+    setLibrary((library) => library.filter((library, n) => n !== i));
+    updateDatabase(library.filter((library, n) => n !== i));
+  };
+
   /*
   // Add habit to state
   function addHabit(newHabit) {
@@ -490,7 +496,12 @@ export default function Dashboard() {
           <Toolbar />
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Library library={library} />} />
+              <Route
+                path="/"
+                element={
+                  <Library library={library} deleteFunction={deleteSong} />
+                }
+              />
               <Route
                 path="/backlog"
                 element={<Backlog updateLibrary={updateLibrary} />}

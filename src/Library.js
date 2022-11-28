@@ -17,8 +17,9 @@ import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
 
-const Library = ({ library }) => {
+const Library = ({ library, deleteFunction }) => {
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={3}>
@@ -50,8 +51,10 @@ const Library = ({ library }) => {
                   sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
                 >
                   <IconButton aria-label="play/pause">
-                    <AddIcon
-                      onClick={() => {}}
+                    <DeleteIcon
+                      onClick={() => {
+                        deleteFunction(i);
+                      }}
                       sx={{ height: 38, width: 38 }}
                     />
                   </IconButton>
