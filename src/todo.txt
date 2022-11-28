@@ -7,6 +7,7 @@
 - how to only have 1 doc per user, a lot of data
 - mobile friendly scroll
 - my own guest music lol
+- securely store music API
 
 It appears you haven't rated music yet! Add music to the backlog. Once rated, it'll appear here.
 

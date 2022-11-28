@@ -179,6 +179,24 @@ export default function Dashboard() {
     });
   };*/
 
+  function searchSong(search) {
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "e0669a5601msh0fa777c28b105efp1c77b3jsnc15800160ba6",
+        "X-RapidAPI-Host": "youtube-music1.p.rapidapi.com",
+      },
+    };
+
+    fetch(
+      "https://youtube-music1.p.rapidapi.com/v2/search?query=" + search,
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
+  }
+
   React.useEffect(() => {
     // Set data with signed in user
 
@@ -191,22 +209,6 @@ export default function Dashboard() {
         //fetchUser("Guest@");
       }
     });
-
-    const options = {
-      method: "GET",
-      headers: {
-        "X-RapidAPI-Key": "e0669a5601msh0fa777c28b105efp1c77b3jsnc15800160ba6",
-        "X-RapidAPI-Host": "youtube-music1.p.rapidapi.com",
-      },
-    };
-
-    fetch(
-      "https://youtube-music1.p.rapidapi.com/v2/search?query=eminem",
-      options
-    )
-      .then((response) => response.json())
-      .then((response) => console.log(response))
-      .catch((err) => console.error(err));
 
     // If loaded with small screen width, have smaller sidebar
     if (window.innerWidth < 760) setOpen(false);
@@ -471,7 +473,10 @@ export default function Dashboard() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Library />} />
-              <Route path="/backlog" element={<Backlog />} />
+              <Route
+                path="/backlog"
+                element={<Backlog searchFunction={searchSong} />}
+              />
             </Routes>
           </BrowserRouter>
         </Box>
