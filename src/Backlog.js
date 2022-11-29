@@ -56,9 +56,9 @@ const Backlog = ({ updateLibrary }) => {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+    <Container sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid item xs={12} justifyContent="center" alignItems="center">
           <Paper
             component="form"
             sx={{
@@ -66,6 +66,7 @@ const Backlog = ({ updateLibrary }) => {
               display: "flex",
               alignItems: "center",
               width: 400,
+              backgroundColor: "black",
             }}
           >
             <InputBase
@@ -94,53 +95,73 @@ const Backlog = ({ updateLibrary }) => {
             </IconButton>
           </Paper>
         </Grid>
-        <Grid spacing={5} xs={4} md={6} lg={4}>
+
+        <Grid item container spacing={3}>
           {suggestions.map((suggestion, i) => (
-            <Card sx={{ display: "flex" }}>
-              <Box sx={{ display: "flex", flexDirection: "column" }}>
-                <CardContent sx={{ flex: "1 0 auto", width: 200 }}>
-                  <Typography component="div" variant="h5">
-                    {suggestion.title}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    color="text.secondary"
-                    component="div"
-                  >
-                    {suggestion.artists[0].name}
-                  </Typography>
-                  <Typography
-                    variant="subtitle1"
-                    color="text.secondary"
-                    component="div"
-                  >
-                    {suggestion.album.name}
-                  </Typography>
-                </CardContent>
-                <Box
-                  sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
-                >
-                  <IconButton aria-label="play/pause">
-                    <AddIcon
-                      onClick={() => {
-                        updateLibrary(suggestion);
-                        removeFromSuggestions(i);
+            <Grid item xs={12} md={6} lg={4}>
+              <Card
+                sx={{
+                  display: "flex",
+                  backgroundColor: "black",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                  <CardContent sx={{ flex: "1 0 auto", width: 200 }}>
+                    <Typography
+                      component="div"
+                      variant="h6"
+                      sx={{
+                        height: "60px",
+                        overflow: "hidden",
                       }}
-                      sx={{ height: 38, width: 38 }}
-                    />
-                  </IconButton>
+                    >
+                      {suggestion.title}
+                    </Typography>
+                    <Typography
+                      variant="subtitle1"
+                      color="text.secondary"
+                      component="div"
+                      sx={{ height: "20px" }}
+                    >
+                      {suggestion.artists[0].name}
+                    </Typography>
+                    <Typography
+                      variant="subtitle2"
+                      color="text.secondary"
+                      component="div"
+                      sx={{ height: "40px", marginTop: "5px" }}
+                    >
+                      {suggestion.album.name}
+                    </Typography>
+                  </CardContent>
+                  <Box
+                    sx={{ display: "flex", alignItems: "center", pl: 1, pb: 1 }}
+                  >
+                    <IconButton aria-label="play/pause">
+                      <AddIcon
+                        onClick={() => {
+                          updateLibrary(suggestion);
+                          removeFromSuggestions(i);
+                        }}
+                        sx={{ height: 38, width: 38 }}
+                      />
+                    </IconButton>
+                  </Box>
                 </Box>
-              </Box>
-              <CardMedia
-                component="img"
-                sx={{ width: 200, height: 200 }}
-                image={suggestion.thumbnail}
-                alt="Album cover not found."
-              />
-            </Card>
+                <CardMedia
+                  component="img"
+                  sx={{ width: 169, height: 169, paddingRight: "20px" }}
+                  image={suggestion.thumbnail}
+                  alt="API does not have this track's album cover."
+                />
+              </Card>
+            </Grid>
           ))}
         </Grid>
       </Grid>
+
       <Copyright sx={{ pt: 4 }} />
     </Container>
   );

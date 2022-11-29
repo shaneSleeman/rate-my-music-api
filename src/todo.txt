@@ -1,11 +1,10 @@
 remaining tasks
-- correct theming/bugs
-- rearrange order?...
+- smaller album covers, cards wider
 - complete library and search pages design
 - public repo and readme from here, not from github
-- on both this and habit tracker, fix reload and error messages
 - messages: library empty, how to use
 - host
 - placeholder songs
 - what happens if lock database?
 - bug testing, mobile friendliness
+- cleanup
