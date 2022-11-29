@@ -48,10 +48,14 @@ const Library = ({ library, deleteFunction, ratings, setRateFunction }) => {
                     {suggestion.artists[0].name}
                   </Typography>
                   <Typography
-                    variant="subtitle1"
+                    variant="subtitle2"
                     color="text.secondary"
                     component="div"
-                    sx={{ height: "40px", marginTop: "5px" }}
+                    sx={{
+                      height: "40px",
+                      marginTop: "5px",
+                      overflow: "hidden",
+                    }}
                   >
                     {suggestion.album.name}
                   </Typography>
