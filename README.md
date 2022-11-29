@@ -1,6 +1,6 @@
 # Rate My Music
 
-[Hosted on Firebase](https://habit-tracker-2cbd3.web.app/)
+[Hosted on Firebase](https://rate-my-music-6b74b.web.app)
 
 ## Screenshot
 
