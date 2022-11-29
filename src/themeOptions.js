@@ -1,5 +1,6 @@
 import { createTheme } from "@mui/system";
 
+// Replicate Spotify-like colours
 const themeOptions = createTheme({
   palette: {
     type: "dark",

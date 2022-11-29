@@ -9,15 +9,11 @@ import List from "@mui/material/List";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Paper from "@mui/material/Paper";
 import MenuIcon from "@mui/icons-material/Menu";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import CheckBoxIcon from "@mui/icons-material/CheckBox";
 import LogoutIcon from "@mui/icons-material/Logout";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -36,24 +32,16 @@ import { signOut } from "firebase/auth";
 
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { db } from "./firebase";
-/*
-import { collection, addDoc, getDocs } from "firebase/firestore";
-import { db } from "./firebase";*/
 
 import Popup from "reactjs-popup";
-
 import Library from "./Library";
 import Backlog from "./Backlog";
-
-import Copyright from "./Copyright";
 
 import {
   Button,
   Card,
   CardActions,
   CardContent,
-  FormControlLabel,
-  FormGroup,
   TextField,
 } from "@mui/material";
 
@@ -81,7 +69,6 @@ const mdTheme = createTheme({
     },
   },
 });
-//import DifficultySelect from "./DifficultySelect";
 
 // Shortens username display
 function excludeAt(s) {
@@ -140,8 +127,6 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function Dashboard() {
-  //const [habits, setHabits] = React.useState([]);
-  //const [newHabit, setHabit] = React.useState("");
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
@@ -253,10 +238,8 @@ export default function Dashboard() {
     );
   };
 
+  // Set rating for a particular track
   function setRating(i, rating) {
-    //let copy = ratings;
-    //copy[i] = rating;
-    //console.log(copy);
     setRatings(
       ratings.map((ratingAt, j) => {
         if (i == j) return rating;
@@ -270,7 +253,6 @@ export default function Dashboard() {
         else return ratingAt;
       })
     );
-    //window.location.reload(false);
   }
 
   return (

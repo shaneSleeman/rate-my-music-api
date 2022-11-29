@@ -5,21 +5,13 @@ import {
   CardMedia,
   Grid,
   IconButton,
-  Paper,
   Rating,
   Typography,
 } from "@mui/material";
 import { Container } from "@mui/system";
 import React from "react";
 import Copyright from "./Copyright";
-import SearchIcon from "@mui/icons-material/Search";
-import DirectionsIcon from "@mui/icons-material/Directions";
-import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
-import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { SecurityUpdateWarning } from "@mui/icons-material";
 
 const Library = ({ library, deleteFunction, ratings, setRateFunction }) => {
   return (

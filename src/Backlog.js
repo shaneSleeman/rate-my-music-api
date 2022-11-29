@@ -12,19 +12,14 @@ import {
 import { Container } from "@mui/system";
 import Copyright from "./Copyright";
 import InputBase from "@mui/material/InputBase";
-import Divider from "@mui/material/Divider";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import DirectionsIcon from "@mui/icons-material/Directions";
-import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
 import AddIcon from "@mui/icons-material/Add";
 
 const Backlog = ({ updateLibrary }) => {
   const [query, setQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
+  // Retrieve suggestions from Youtube Music API
   function searchSong(search) {
     const options = {
       method: "GET",
@@ -44,7 +39,6 @@ const Backlog = ({ updateLibrary }) => {
         if (response.ok == true) {
           setSuggestions(response.result.songs);
         }
-        //
       })
       .catch((err) => console.error(err));
   }
