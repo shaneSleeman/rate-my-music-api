@@ -25,19 +25,33 @@ const Library = ({ library, deleteFunction, ratings, setRateFunction }) => {
   return (
     <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
       <Grid container spacing={3}>
-        {}
-        <Grid item xs={12}>
-          {library.map((suggestion, i) => (
-            <Card sx={{ display: "flex" }}>
+        {library.map((suggestion, i) => (
+          <Grid item xs={12} md={6} lg={4}>
+            <Card
+              sx={{
+                display: "flex",
+                backgroundColor: "black",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
               <Box sx={{ display: "flex", flexDirection: "column" }}>
                 <CardContent sx={{ flex: "1 0 auto", width: 200 }}>
-                  <Typography component="div" variant="h5">
+                  <Typography
+                    component="div"
+                    variant="h6"
+                    sx={{
+                      height: "60px",
+                      overflow: "hidden",
+                    }}
+                  >
                     {suggestion.title}
                   </Typography>
                   <Typography
                     variant="subtitle1"
                     color="text.secondary"
                     component="div"
+                    sx={{ height: "20px" }}
                   >
                     {suggestion.artists[0].name}
                   </Typography>
@@ -45,6 +59,7 @@ const Library = ({ library, deleteFunction, ratings, setRateFunction }) => {
                     variant="subtitle1"
                     color="text.secondary"
                     component="div"
+                    sx={{ height: "40px", marginTop: "5px" }}
                   >
                     {suggestion.album.name}
                   </Typography>
@@ -65,20 +80,19 @@ const Library = ({ library, deleteFunction, ratings, setRateFunction }) => {
                     value={ratings[i]}
                     onChange={(event, newValue) => {
                       setRateFunction(i, newValue);
-                      //window.location.reload(false);
                     }}
                   />
                 </Box>
               </Box>
               <CardMedia
                 component="img"
-                sx={{ width: 200, height: 200 }}
+                sx={{ width: 169, height: 169, paddingRight: "20px" }}
                 image={suggestion.thumbnail}
-                alt="Album cover not found."
+                alt="API does not have this track's album cover."
               />
             </Card>
-          ))}
-        </Grid>
+          </Grid>
+        ))}
       </Grid>
       <Copyright sx={{ pt: 4 }} />
     </Container>
